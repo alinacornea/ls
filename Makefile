@@ -35,7 +35,7 @@ SRC_NAME = main.c \
 			get_info.c \
 			get_total.c \
 			check_permissions.c \
-		  insert_elem.c \
+		 	insert_elem.c \
 			print.c \
 			sort_elem.c \
 			check.c

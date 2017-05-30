@@ -16,7 +16,7 @@ CC= gcc
 CFLAGS+= -Wall -Wextra -Werror
 
 LIB_PATH= ./libft/
-PF_PATH= ./ft_printf/
+PF_PATH= ./printf/
 
 LIBFT_SRC+= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 						ft_memmove.c ft_memchr.c ft_memcmp.c ft_memalloc.c \
