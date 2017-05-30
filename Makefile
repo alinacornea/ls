@@ -38,8 +38,7 @@ SRC_NAME = main.c \
 		  insert_elem.c \
 			print.c \
 			sort_elem.c \
-			check.c 
-			# leak.c
+			check.c
 
 all: $(NAME)
 

@@ -12,60 +12,60 @@
 
 #include "ft_ls.h"
 
-void get_nlink(t_data *data, nlink_t nlink)
+void	get_nlink(t_data *data, nlink_t nlink)
 {
-  char *tmp;
+	char *tmp;
 
-  tmp = ft_itoa(nlink);
-  data->nlink = ft_strdup(tmp);
-  ft_strdel(&tmp);
+	tmp = ft_itoa(nlink);
+	data->nlink = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
-void get_owner(t_data *data, uid_t uid)
+void	get_owner(t_data *data, uid_t uid)
 {
-  char *tmp;
-  struct passwd *pass;
+	char			*tmp;
+	struct passwd	*pass;
 
-  if ((pass = getpwuid(uid)) == NULL)
-    tmp = ft_itoa(uid);
-  else
-    tmp = ft_strdup(pass->pw_name);
-  data->uid = ft_strdup(tmp);
-  ft_strdel(&tmp);
+	if ((pass = getpwuid(uid)) == NULL)
+		tmp = ft_itoa(uid);
+	else
+		tmp = ft_strdup(pass->pw_name);
+	data->uid = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
-void get_group(t_data *data, gid_t git)
+void	get_group(t_data *data, gid_t git)
 {
-  char *tmp;
-  struct group *grp;
+	char			*tmp;
+	struct group	*grp;
 
-  if ((grp = getgrgid(git)) == NULL)
-    tmp = ft_itoa(git);
-  else
-    tmp = ft_strdup(grp->gr_name);
-  data->grp = ft_strdup(tmp);
-  ft_strdel(&tmp);
+	if ((grp = getgrgid(git)) == NULL)
+		tmp = ft_itoa(git);
+	else
+		tmp = ft_strdup(grp->gr_name);
+	data->grp = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
-void get_size(t_data *data, off_t s)
+void	get_size(t_data *data, off_t s)
 {
-  char *tmp;
+	char *tmp;
 
-  tmp = ft_itoa(s);
-  data->size = ft_strdup(tmp);
-  ft_strdel(&tmp);
+	tmp = ft_itoa(s);
+	data->size = ft_strdup(tmp);
+	ft_strdel(&tmp);
 }
 
-void get_link(t_data *data, char *path)
+void	get_link(t_data *data, char *path)
 {
-  int ret;
-  char *tmp;
-  char buff[BUFF_SIZE];
+	int		ret;
+	char	*tmp;
+	char	buff[BUFF_SIZE];
 
-  tmp = ft_strjoin(path, data->name);
-  if ((ret = readlink(tmp, buff, BUFF_SIZE)) == -1)
-    error(1, path);
-  buff[ret] = '\0';
-  data->link = ft_strdup(buff);
-  ft_strdel(&tmp);
+	tmp = ft_strjoin(path, data->name);
+	if ((ret = readlink(tmp, buff, BUFF_SIZE)) == -1)
+		ft_error(1, path);
+	buff[ret] = '\0';
+	data->link = ft_strdup(buff);
+	ft_strdel(&tmp);
 }

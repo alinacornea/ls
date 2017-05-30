@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void  init_args(t_posib *option)
+void	init_args(t_posib *option)
 {
 	option->path = NULL;
 	option->a = 0;
@@ -20,6 +20,7 @@ void  init_args(t_posib *option)
 	option->l = 0;
 	option->r = 0;
 	option->s = 0;
+	option->one = 0;
 	option->rec = 0;
 	option->nb_path = 0;
 	option->total = 0;
@@ -42,18 +43,17 @@ void	init_elements(t_data *elem)
 	elem->link = NULL;
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	char *str;
+	char	*str;
 	t_posib	option;
 
 	init_args(&option);
 	str = get_argument(argc, argv, &option);
-  set_option(str, &option);
+	set_option(str, &option);
 	if (option.nb_path > 1)
 		sort_path(&(option.path), option.nb_path, option.r);
 	list(&option);
 	ft_strdel(&str);
-	// sleep(50);
 	return (0);
 }

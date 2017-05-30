@@ -12,30 +12,30 @@
 
 #include "ft_ls.h"
 
-void print_tree(t_data *data, t_posib *option)
+void	print_tree(t_data *data, t_posib *option)
 {
-		if (data->left)
-			print_tree(data->left, option);
-		if (option->l)
-		{
-			printf("%-10s %3s %-9s %-7s %6s %.12s %s",
-			data->mode, data->nlink, data->uid, data->grp, \
-			data->size, data->date, data->name);
-			if (data->link != NULL)
-				printf(" -> %s", data->link);
-			printf("\n");
-		}
-		else
-			printf("%s\n", data->name);
-		if (data->right)
-			print_tree(data->right, option);
+	if (data->left)
+		print_tree(data->left, option);
+	if (option->l && !option->one)
+	{
+		ft_printf("%-12s %-3s %-9s %-7s %6s %.12s %s",
+		data->mode, data->nlink, data->uid, data->grp, \
+		data->size, data->date, data->name);
+		if (data->link != NULL)
+			ft_printf(" -> %s", data->link);
+		ft_printf("\n");
+	}
+	else
+		ft_printf("%s\n", data->name);
+	if (data->right)
+		print_tree(data->right, option);
 }
 
-void print(t_data **data, t_posib *option)
+void	print(t_data **data, t_posib *option)
 {
 	t_data *tmp;
 
- 	if(option->l)
+	if (option->l && !option->one)
 	{
 		ft_putstr("total ");
 		ft_putnbr(option->total);
@@ -43,9 +43,9 @@ void print(t_data **data, t_posib *option)
 		option->total = 0;
 	}
 	tmp = *data;
-	while(tmp)
+	while (tmp)
 	{
-			print_tree(tmp, option);
+		print_tree(tmp, option);
 		tmp = tmp->next;
 	}
 }

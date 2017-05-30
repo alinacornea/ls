@@ -13,6 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -21,7 +22,6 @@
 # include <inttypes.h>
 # include <limits.h>
 # include <sys/types.h>
-#	include "libft.h"
 
 # define SPECIFIERS  "sSpdDioOuUxXcCfF"
 # define FLAGS "#0-+ jzhl123456789.*"
@@ -97,25 +97,6 @@ void			unsign_char_len(va_list arg, int *value, char *get, t_arg mod);
 void			hex_unchar_len(va_list arg, int *value, char *get, t_arg mod);
 void			octal_unchar_len(va_list arg, int *value, char *get, t_arg mod);
 void			handle_float(va_list arg, int *value, char *get, t_arg mod);
-
-void			ft_putchar(char c);
-void			ft_putstr(const char *str);
-char			*ft_strchr(const char *s, int c);
-char			*ft_strdup(const char *s1);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_strnew(size_t size);
-char			*ft_strsub(char const *s, unsigned int start, size_t len);
-void			*ft_memalloc(size_t size);
-void			*ft_memset(void *dest, int c, size_t len);
-void			ft_bzero(void *s, size_t n);
-int				ft_atoi(const char *str);
-void			*ft_memset(void *dest, int c, size_t len);
-int				ft_isalpha(int c);
-int				ft_isdigit(int c);
-char			*ft_itoa(int n);
-int				ft_wstrlen(const wchar_t *s);
-wchar_t			*ft_wstrjoin(wchar_t const *s1, wchar_t const *s2);
-wchar_t			*ft_wstrdup(const wchar_t *s1);
-wchar_t			*ft_wmemset(wchar_t *b, wchar_t c, size_t len);
+char			*ft_strjoinfree(char *s1, char *s2);
 
 #endif

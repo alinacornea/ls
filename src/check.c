@@ -12,11 +12,12 @@
 
 #include "ft_ls.h"
 
-void free_tree(t_data *data)
+void	free_tree(t_data *data)
 {
 	if (data)
 	{
-		free_tree(data->left);
+		if (data->left)
+			free_tree(data->left);
 		ft_strdel(&data->name);
 		ft_strdel(&data->mode);
 		ft_strdel(&data->uid);
@@ -25,13 +26,14 @@ void free_tree(t_data *data)
 		ft_strdel(&data->date);
 		ft_strdel(&data->size);
 		ft_strdel(&data->nlink);
-		free_tree(data->right);
+		if (data->right)
+			free_tree(data->right);
 		free(data);
 		data = NULL;
 	}
 }
 
-int error(int nb, char *str)
+int		ft_error(int nb, char *str)
 {
 	if (nb == 1)
 	{
@@ -43,29 +45,29 @@ int error(int nb, char *str)
 		ft_putstr_fd("ft_ls: illegal option -- ", 2);
 		ft_putchar_fd(str[0], 2);
 		ft_putchar('\n');
-		ft_putstr_fd("usage: ft_ls [-RSalrt] [file ...]", 2);
+		ft_putstr_fd("usage: ft_ls [-RSalrt1] [file ...]", 2);
 		ft_putendl("");
 	}
 	return (-1);
 }
 
-int check_str(char *str)
+int		check_str(char *str)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
-	tmp = "RSatlr";
+	tmp = "RSatlr1";
 	while (str[i])
 	{
 		if (ft_strchr(tmp, str[i]) == NULL)
-			exit(error(2, &(str[i])));
+			exit(ft_error(2, &(str[i])));
 		i++;
 	}
 	return (0);
 }
 
-int check_arg(t_posib option)
+int		check_arg(t_posib option)
 {
 	int i;
 
@@ -75,7 +77,7 @@ int check_arg(t_posib option)
 		if (option.path[i][0] == '\0')
 		{
 			errno = ENOENT;
-			exit(error(1, "open"));
+			exit(ft_error(1, "open"));
 		}
 		i++;
 	}

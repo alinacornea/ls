@@ -12,8 +12,7 @@
 
 #include "ft_ls.h"
 
-
-void insert_elem(t_data **data, t_data *new, t_posib *option)
+void	insert_elem(t_data **data, t_data *new, t_posib *option)
 {
 	long value;
 
@@ -23,7 +22,7 @@ void insert_elem(t_data **data, t_data *new, t_posib *option)
 	else
 	{
 		if (option->s)
-			value = new->size - (*data)->size;
+			value = ft_atoi(new->size) - ft_atoi((*data)->size);
 		else if (option->t)
 		{
 			if (!(value = new->sec - (*data)->sec))
