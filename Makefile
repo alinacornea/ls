@@ -21,7 +21,7 @@ CFLAGS+= -Wall -Wextra -Werror
 SRC_PATH= src/
 INC_PATH= includes/
 OBJ_PATH= obj/
-LIBFT_PATH= includes/libft/
+LIBFT_PATH= libft/
 
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 INC = $(addprefix -I ,$(INC_PATH))
